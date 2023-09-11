@@ -1,5 +1,5 @@
 const express = require("express");
-const database_mock = require("../database/database_mock");
+const database_mock = [];
 const apiV1Router = express.Router();
 
 apiV1Router.use(express.json());
