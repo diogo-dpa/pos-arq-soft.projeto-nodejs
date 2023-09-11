@@ -6,7 +6,6 @@ const knex = require("knex")(
 
 apiV2Router.use(express.json());
 
-//---------------------------------------------- API
 apiV2Router.get("/produtos", (_, res) => {
 	knex("produtos")
 		.then((produtos) => {
@@ -59,7 +58,6 @@ apiV2Router.post("/produtos", (req, res) => {
 			marca,
 		})
 		.then((produto) => {
-			console.log({ produto });
 			res.status(200).json({
 				message: "Criado com sucesso",
 			});
@@ -95,7 +93,9 @@ apiV2Router.put("/produtos/:id", (req, res) => {
 		})
 		.then((produto) => {
 			if (produto) {
-				res.status(200).json("Produto atualizado com sucesso");
+				res.status(200).json({
+					message: "Produto atualizado com sucesso",
+				});
 			} else {
 				res.status(404).json({
 					message: "Produto não encontrado",
@@ -121,7 +121,6 @@ apiV2Router.delete("/produtos/:id", (req, res) => {
 		.where({ id })
 		.del()
 		.then((produto) => {
-			console.log({ produto });
 			if (produto) {
 				res.status(200).json("Produto deletado com sucesso");
 			} else {
