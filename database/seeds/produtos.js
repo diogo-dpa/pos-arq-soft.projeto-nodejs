@@ -1,5 +1,11 @@
-const database_mock = {
-	produtos: [
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
+exports.seed = async function (knex) {
+	// Deletes ALL existing entries
+	await knex("produtos").del();
+	await knex("produtos").insert([
 		{ id: 5, descricao: "Nescau 400gr", valor: 8.0, marca: "Nestlé" },
 		{ id: 2, descricao: "Maionese 250gr", valor: 7.2, marca: "Helmans" },
 		{ id: 3, descricao: "Iogurte Natural 200ml", valor: 2.5, marca: "Itambé" },
@@ -15,7 +21,5 @@ const database_mock = {
 			valor: 15.2,
 			marca: "Chipps",
 		},
-	],
+	]);
 };
-
-module.exports = database_mock;
